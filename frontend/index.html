@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Policy Change Impact Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24'><rect rx='5' fill='%232c7a7b' width='24' height='24'/><path d='M6 9h12v6H6z' fill='%23fff' opacity='0.08'/><path d='M6 9h12v2H6z' fill='%23fff' opacity='0.12'/></svg>"
+             alt="Logo" class="logo" />
+        <div>
+          <h1 class="title">Policy Impact Analyzer</h1>
+          <p class="subtitle">Real-time transparency for premiums, risk & billing</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button id="downloadReport" class="btn ghost">Download Report</button>
+        <button id="helpBtn" class="btn ghost">Help</button>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="panel grid-inputs">
+        <form id="policyForm" class="form-grid" onsubmit="return false;">
+          <div class="card input-card">
+            <h2 class="card-title">Old Policy</h2>
+            <label>Liability Limit
+              <input type="number" id="oldLiability" value="100000" min="0" />
+            </label>
+            <label>Property Limit
+              <input type="number" id="oldProperty" value="50000" min="0" />
+            </label>
+            <label>Driver Age
+              <input type="number" id="oldDriverAge" value="23" min="16" />
+            </label>
+            <label>Vehicle Value
+              <input type="number" id="oldVehicleValue" value="30000" min="0" />
+            </label>
+            <label>Location
+              <select id="oldLocation">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="card input-card">
+            <h2 class="card-title">New Policy</h2>
+            <label>Liability Limit
+              <input type="number" id="newLiability" value="150000" min="0" />
+            </label>
+            <label>Property Limit
+              <input type="number" id="newProperty" value="70000" min="0" />
+            </label>
+            <label>Driver Age
+              <input type="number" id="newDriverAge" value="23" min="16" />
+            </label>
+            <label>Vehicle Value
+              <input type="number" id="newVehicleValue" value="35000" min="0" />
+            </label>
+            <label>Location
+              <select id="newLocation">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high" selected>High</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="card actions-card">
+            <h2 class="card-title">Actions</h2>
+            <p class="muted">Run a quick impact analysis. Results are customer-friendly and ready to share.</p>
+            <div class="actions">
+              <button id="analyzeBtn" class="btn primary">Analyze Impact</button>
+              <button id="clearBtn" type="button" class="btn ghost">Reset</button>
+            </div>
+
+            <div class="extra">
+              <label class="small">
+                <input id="showRaw" type="checkbox" /> Show raw explanation JSON
+              </label>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section id="results" class="panel results-panel" aria-live="polite" style="display:none;">
+        <div class="results-header">
+          <h2>Analysis Result</h2>
+          <div class="result-actions">
+            <button id="copyBtn" class="btn ghost">Copy Summary</button>
+            <button id="printBtn" class="btn ghost">Print</button>
+          </div>
+        </div>
+
+        <div class="grid-results">
+          <div class="card result-card">
+            <h3 class="small-title">Premium Impact</h3>
+            <ul id="premiumImpact" class="list"></ul>
+          </div>
+
+          <div class="card result-card">
+            <h3 class="small-title">Risk Impact</h3>
+            <ul id="riskImpact" class="list"></ul>
+          </div>
+
+          <div class="card result-card">
+            <h3 class="small-title">Billing Impact</h3>
+            <ul id="billingImpact" class="list"></ul>
+          </div>
+
+          <div class="card explanation-card" id="explanationContainer">
+            <h3 class="small-title">Explanation</h3>
+            <div id="explanation" class="explanation-renderer"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <small>© <span id="currentYear"></span> Acme Insurance — Policy Impact Analyzer</small>
+        <div class="footer-links">
+          <a href="#" id="privacy">Privacy</a>
+          <a href="#" id="terms">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "liability_rate_per_10k": 4.5,
+  "property_rate_per_1k": 1.2,
+  "young_driver_surcharge": 0.20,
+  "location_multipliers": {
+    "low": 0.9,
+    "medium": 1.0,
+    "high": 1.25
+  }
+}
